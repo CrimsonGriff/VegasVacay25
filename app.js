@@ -16,6 +16,8 @@ import {
   query,
   where,
 } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+import { sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyB7kS8qchec22bF4oiiWtZR9_acBccE8hE",
@@ -128,6 +130,19 @@ document.getElementById('logoutBtn').addEventListener('click', async () => {
   await signOut(auth);
   alert("Logged out");
 });
+
+// 🔁 Forgot Password
+document.getElementById("forgotPasswordBtn").addEventListener("click", async () => {
+    const email = prompt("Enter your account email:");
+    if (!email) return;
+  
+    try {
+      await sendPasswordResetEmail(auth, email.trim());
+      alert("A password reset link has been sent to your email.");
+    } catch (error) {
+      alert("Error: " + error.message);
+    }
+  });
 
 // 📅 Calendar rendering (always visible)
 function renderCalendar() {
