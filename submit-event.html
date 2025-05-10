@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Submit Event</title>
+  <script type="module" src="submit-event.js"></script>
+  <style>
+    body {
+      background-color: #fbe8d3;
+      font-family: sans-serif;
+      padding: 30px;
+    }
+    form {
+      background: #fff3e6;
+      padding: 20px;
+      border: 2px solid #b3443b;
+      border-radius: 10px;
+      width: 300px;
+    }
+    input, textarea {
+      display: block;
+      margin-bottom: 10px;
+      width: 100%;
+      padding: 8px;
+    }
+    button {
+      background-color: #b3443b;
+      color: white;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+  </style>
+
+<link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap" rel="stylesheet">
+
+<style>
+  body {
+    font-family: 'Lato', sans-serif;
+    background-color: #fbe8d3;
+    color: #2b1d18;
+    margin: 0;
+    padding: 20px;
+    animation: fadeIn 0.4s ease;
+  }
+  h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    color: #b3443b;
+    margin-top: 0;
+  }
+  #topBar {
+    background: #b3443b;
+    color: white;
+    padding: 12px 20px;
+    border-bottom: 4px solid #a03831;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0 0 10px 10px;
+  }
+  #authSection input {
+    padding: 6px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin-left: 5px;
+  }
+  input, textarea {
+    font-family: 'Lato', sans-serif;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    transition: border-color 0.3s;
+  }
+  input:focus, textarea:focus {
+    border-color: #b3443b;
+    outline: none;
+  }
+  button, a.button-link {
+    background-color: #b3443b;
+    color: white;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+  }
+  button:hover, a.button-link:hover {
+    background-color: #c5554d;
+    box-shadow: 0 0 6px #ffd5a3;
+    transform: scale(1.03);
+  }
+  #calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 12px;
+    margin-top: 20px;
+  }
+  #calendar div {
+    background: #fff3e6;
+    border: 2px solid #e3c3a1;
+    border-radius: 10px;
+    padding: 18px;
+    text-align: center;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+  #calendar div:hover {
+    background: #ffebd6;
+    transform: scale(1.05);
+    box-shadow: 0 0 6px #ffd5a3;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+</head>
+<body>
+  <h2>Submit an Event</h2>
+  <form id="eventForm">
+    <label>Date:</label>
+    <input type="text" id="eventDate" readonly>
+
+    <label>Title:</label>
+    <input type="text" id="eventTitle" required>
+
+    <label>Time:</label>
+    <input type="time" id="eventTime" required>
+
+    <label>Description:</label>
+    <textarea id="eventDesc"></textarea>
+
+    <button type="submit">Submit Event</button>
+  </form>
+  <button id="backToCalendarBtn" style="margin-top: 15px;">← Back to Calendar</button>
+</body>
+</html>
