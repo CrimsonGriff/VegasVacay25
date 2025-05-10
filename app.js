@@ -255,6 +255,23 @@ function renderCalendar() {
       alert("Availability saved.");
       modal.style.display = 'none';
     };
+
+    document.getElementById('removeAvailabilityBtn').onclick = async () => {
+        const confirmDelete = confirm("Remove your availability for this day?");
+        if (!confirmDelete) return;
+      
+        let newData = availabilitySnap.exists() ? availabilitySnap.data() : {};
+        delete newData[dateStr];
+      
+        try {
+          await setDoc(availabilityRef, newData);
+          alert("Availability removed.");
+          modal.style.display = 'none';
+        } catch (err) {
+          alert("Failed to remove availability: " + err.message);
+        }
+      };
+      
   
     // Load all availability for that day
     const usersSnapshot = await getDocs(collection(db, "users"));
