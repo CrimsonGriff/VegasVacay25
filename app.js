@@ -92,26 +92,36 @@ document.getElementById('loginBtn').addEventListener('click', async () => {
 
 // 🆕 Signup
 document.getElementById('signupBtn').addEventListener('click', async () => {
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-  const firstName = prompt("Enter your first name:");
-
-  try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    const user = userCredential.user;
-
-    await setDoc(doc(db, "users", user.uid), {
-      email,
-      firstName,
-      role: email === "youradminemail@example.com" ? "admin" : "user"
-    });
-
-    alert("Account created!");
-
-  } catch (err) {
-    alert("Signup failed: " + err.message);
-  }
-});
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
+    
+    if (!email || !password) {
+      alert("Please enter both email and password before signing up.");
+      return;
+    }
+  
+    const firstName = prompt("Enter your first name:");
+    if (!firstName) {
+      alert("First name is required.");
+      return;
+    }
+  
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+  
+      await setDoc(doc(db, "users", user.uid), {
+        email,
+        firstName,
+        role: email === "youradminemail@example.com" ? "admin" : "user"
+      });
+  
+      alert("Account created!");
+    } catch (err) {
+      alert("Signup failed: " + err.message);
+    }
+  });
+  
 
 // 🚪 Logout
 document.getElementById('logoutBtn').addEventListener('click', async () => {
